@@ -73,10 +73,8 @@ void draw() {
     
     //fighter
     
-
     image(fighter,fighterX,fighterY);
     
-
     if (upPressed) {
       fighterY -= fighterSpeed;
     }
@@ -116,6 +114,7 @@ void draw() {
     ex = 0;
     ey = floor(random(0,470));
     }
+    
     //treasure
     image(treasure,tx,ty);
     if(fighterX <= tx +40 && fighterX >= tx -40
@@ -131,7 +130,10 @@ void draw() {
     //enemy
     image(enemy,ex,ey);
     ex +=3;
-    ex %= 640;
+    if (ex > 640){
+    ex = 0;
+    ey = floor(random(0,470));
+    }
     
     if (hpx<10){
     GAME_STATE = GAME_OVER;
