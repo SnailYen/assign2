@@ -31,8 +31,6 @@ void setup () {
   hp = loadImage("img/hp.png");
   treasure = loadImage("img/treasure.png");
   
-    
-  
   hpx = 45;
   tx = floor(random(600));
   ty = floor(random(0,470));
@@ -47,7 +45,6 @@ void setup () {
 }
 
 void draw() {
- println(mouseX);
   switch(GAME_STATE){
   
   case GAME_START:
