@@ -1,4 +1,3 @@
-//You should implement your assign2 here.
 
 final int GAME_START=1, GAME_RUN=2,GAME_OVER=3;
 int GAME_STATE;
@@ -59,3 +58,124 @@ void draw() {
     }
     }
     break;
+ 
+    
+  case GAME_RUN:
+  
+    //***background***
+    image(bg1,bg1x,0); 
+    bg1x+=2;
+    bg1x%=1280;
+    image(bg2,bg2x-640,0);
+    bg2x+=2;
+    bg2x%=1280;
+    image(bg1,bg3x-1280,0);
+    bg3x+=2;
+    bg3x%=1280;
+    
+    //fighter
+    
+
+    image(fighter,fighterX,fighterY);
+    
+
+    if (upPressed) {
+      fighterY -= fighterSpeed;
+    }
+    if (downPressed) {
+      fighterY += fighterSpeed;
+    }
+    if (leftPressed) {
+      fighterX -= fighterSpeed;
+    }
+    if (rightPressed) {
+      fighterX += fighterSpeed;
+    }
+    //fighter boundary
+    if (fighterX > width -50){
+      fighterX = width -50;
+    }
+    if (fighterX < 0){
+      fighterX = 0;
+    }
+    if (fighterY > height -50){
+      fighterY = height -50;
+    }
+    if (fighterY < 0){
+      fighterY = 0;
+    }
+    
+        
+    //hp
+    rectMode(CORNERS); 
+    rect(5,5,hpx,27);
+    fill(255,0,0);
+    image(hp,0,0);
+    
+    //treasure
+    image(treasure,tx,ty);
+    
+    //enemy
+    image(enemy,ex,ey);
+    ex +=3;
+    ex %= 640;
+    
+    if (fighterX <= ex +30 && fighterX >= ex -30
+    && fighterY <= ey +30 && fighterY >= ey -30){
+    GAME_STATE = GAME_OVER;
+    }
+    break;
+    
+  case GAME_OVER:
+    
+    image(end2,0,0);
+    if(mouseX>208 && mouseX<434 && mouseY>310 && mouseY<346){
+    image(end1,0,0);
+    if(mousePressed){
+    GAME_STATE = GAME_RUN;
+    fighterX = width -50;
+    fighterY = height/2;
+    ex = 0;
+    ey = floor(random(0,470));
+    }
+    break;
+
+    }
+  }
+
+}
+void keyPressed(){
+  if (key == CODED) { // detect special keys 
+      switch (keyCode) {
+        case UP:
+          upPressed = true;
+          break;
+        case DOWN:
+          downPressed = true;
+          break;
+        case LEFT:
+          leftPressed = true;
+          break;
+        case RIGHT:
+          rightPressed = true;
+          break;}
+  }
+}
+void keyReleased(){
+  if (key == CODED) {
+      switch (keyCode) {
+        case UP:
+          upPressed = false;
+          break;
+        case DOWN:
+          downPressed = false;
+          break;
+        case LEFT:
+          leftPressed = false;
+          break;
+        case RIGHT:
+          rightPressed = false;
+          break;
+      }
+    }
+}
