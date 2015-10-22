@@ -130,6 +130,7 @@ void draw() {
     //enemy
     image(enemy,ex,ey);
     ex +=3;
+    ey += (fighterY - ey +(int)random(-10,10))/30;
     if (ex > 640){
     ex = 0;
     ey = floor(random(0,470));
