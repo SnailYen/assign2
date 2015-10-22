@@ -1,3 +1,4 @@
+//You should implement your assign2 here.
 
 final int GAME_START=1, GAME_RUN=2,GAME_OVER=3;
 int GAME_STATE;
@@ -32,7 +33,7 @@ void setup () {
   
     
   
-  hpx = floor(random(10,205));
+  hpx = 45;
   tx = floor(random(600));
   ty = floor(random(0,470));
   ex = 0;
@@ -46,14 +47,14 @@ void setup () {
 }
 
 void draw() {
- 
+ println(mouseX);
   switch(GAME_STATE){
   
   case GAME_START:
     image(start2,0,0);
     if(mouseX>208 && mouseX<458 && mouseY>374 && mouseY<416){
     image(start1,0,0);
-    if(mousePressed){
+    if(mousePressed && mouseButton == LEFT){
     GAME_STATE = GAME_RUN;
     }
     }
@@ -112,31 +113,54 @@ void draw() {
     fill(255,0,0);
     image(hp,0,0);
     
+    if(fighterX <= ex +50 && fighterX >= ex -50
+    && fighterY <= ey +50 && fighterY >= ey -50){
+    hpx = hpx-40;
+    ex = 0;
+    ey = floor(random(0,470));
+    }
     //treasure
     image(treasure,tx,ty);
+    if(fighterX <= tx +40 && fighterX >= tx -40
+    && fighterY <= ty +40 && fighterY >= ty -40){
+    hpx = hpx +20;
+    tx = floor(random(600));
+    ty = floor(random(0,470));
+    } 
+    if(hpx > 205){
+    hpx = 205;
+    }
     
     //enemy
     image(enemy,ex,ey);
     ex +=3;
     ex %= 640;
     
-    if (fighterX <= ex +30 && fighterX >= ex -30
-    && fighterY <= ey +30 && fighterY >= ey -30){
+    if (hpx<10){
     GAME_STATE = GAME_OVER;
+    
     }
     break;
     
   case GAME_OVER:
-    
+  
     image(end2,0,0);
     if(mouseX>208 && mouseX<434 && mouseY>310 && mouseY<346){
     image(end1,0,0);
-    if(mousePressed){
-    GAME_STATE = GAME_RUN;
-    fighterX = width -50;
-    fighterY = height/2;
+    if(mousePressed && mouseButton == LEFT){
+    
+    //reset data
+    hpx =45;
+    tx = floor(random(600));
+    ty = floor(random(0,470));
     ex = 0;
     ey = floor(random(0,470));
+   
+    fighterX = width -50;
+    fighterY = height/2;
+    
+    
+    GAME_STATE = GAME_RUN;
     }
     break;
 
