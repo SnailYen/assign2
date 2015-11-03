@@ -32,7 +32,7 @@ void setup () {
   
   hpx = 45;
   tx = floor(random(600));
-  ty = floor(random(0,470));
+  ty = floor(random(0,440));
   ex = 0;
   ey = floor(random(0,470));
   bg1x = 0;
@@ -120,7 +120,7 @@ void draw() {
       && fighterY <= ty +40 && fighterY >= ty -40){
       hpx = hpx +20;
       tx = floor(random(600));
-      ty = floor(random(0,470));
+      ty = floor(random(0,440));
       } 
       if(hpx > 205){
       hpx = 205;
@@ -152,7 +152,7 @@ void draw() {
         //reset data
         hpx =45;
         tx = floor(random(600));
-        ty = floor(random(0,470));
+        ty = floor(random(0,440));
         ex = 0;
         ey = floor(random(0,470));
         fighterX = width -50;
